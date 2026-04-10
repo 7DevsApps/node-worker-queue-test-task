@@ -40,7 +40,7 @@ curl -X POST http://localhost:3000/jobs -H "Content-Type: application/json" -d '
 ```bash
 curl -X POST http://localhost:3000/jobs -H "Content-Type: application/json" -d '{"task":"sync","payload":{"forceFailure":true}}'
 # immediately check — status will be "retrying" between attempts:
-curl http://localhost:3000/jobs?status=retrying
+curl "http://localhost:3000/jobs?status=retrying"
 ```
 
 **queued** — stop the worker, then create a job:
@@ -49,14 +49,14 @@ curl http://localhost:3000/jobs?status=retrying
 # 1. Stop npm run start:worker (Ctrl+C)
 # 2. Create a job — it will stay queued with no worker to pick it up:
 curl -X POST http://localhost:3000/jobs -H "Content-Type: application/json" -d '{"task":"idle","payload":{}}'
-curl http://localhost:3000/jobs?status=queued
+curl "http://localhost:3000/jobs?status=queued"
 # 3. Restart worker to resume processing: npm run start:worker
 ```
 
 **random** — 40% failure chance (default behavior):
 
 ```bash
-curl -X POST http://localhost:3000/jobs -H "Content-Type: application/json" -d '{"task":"process","payload":{}'
+curl -X POST http://localhost:3000/jobs -H "Content-Type: application/json" -d '{"task":"process","payload":{}}'
 ```
 
 Filter by any status:
@@ -72,7 +72,7 @@ curl "http://localhost:3000/jobs?status=processing"
 Get job by ID:
 
 ```bash
-curl http://localhost:3000/jobs/<id>
+curl http://localhost:3000/jobs/jobId
 ```
 
 ## Frontend
