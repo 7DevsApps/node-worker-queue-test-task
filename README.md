@@ -5,6 +5,7 @@ Reliable async job processing with REST API, PostgreSQL persistence, BullMQ queu
 ## Quick Start
 
 ```bash
+cp .env.example .env        # Copy env config (edit values if needed)
 docker-compose up -d        # Start Postgres + Redis
 npm install                  # Install dependencies
 npm run migrate              # Create database tables
@@ -73,6 +74,16 @@ Get job by ID:
 ```bash
 curl http://localhost:3000/jobs/<id>
 ```
+
+## Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev       # http://localhost:5173
+```
+
+> API server must be running on port 3000 (`npm run start:api`).
 
 ## Architecture
 
